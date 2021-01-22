@@ -1,18 +1,18 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\responsetypes;
+namespace virginent\oauth2\responsetypes;
 
-use conquer\oauth2\models\AccessToken;
-use conquer\oauth2\BaseModel;
+use virginent\oauth2\models\AccessToken;
+use virginent\oauth2\BaseModel;
 
 /**
  * @link https://tools.ietf.org/html/rfc6749#section-4.2.1
- * @author Andrey Borodulin
+ * @Author Daniel Lucas
  */
 class Implicit extends BaseModel
 {
@@ -77,7 +77,7 @@ class Implicit extends BaseModel
 
     /**
      * @return array
-     * @throws \conquer\oauth2\Exception
+     * @throws \virginent\oauth2\Exception
      * @throws \yii\base\Exception
      */
     public function getResponseData()

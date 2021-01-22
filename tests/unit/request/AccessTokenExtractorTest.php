@@ -2,8 +2,8 @@
 
 namespace tests\unit\request;
 
-use conquer\oauth2\Exception;
-use conquer\oauth2\request\AccessTokenExtractor;
+use virginent\oauth2\Exception;
+use virginent\oauth2\request\AccessTokenExtractor;
 use yii\web\HeaderCollection;
 use yii\web\Request;
 

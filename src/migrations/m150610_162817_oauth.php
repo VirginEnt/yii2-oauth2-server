@@ -1,18 +1,18 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\migrations;
+namespace virginent\oauth2\migrations;
 
 use yii\db\Schema;
 use yii\db\Migration;
 
 /**
  *
- * @author Andrey Borodulin
+ * @Author Daniel Lucas
  *
  */
 class m150610_162817_oauth extends Migration

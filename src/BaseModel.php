@@ -1,8 +1,8 @@
 <?php
 
-namespace conquer\oauth2;
+namespace virginent\oauth2;
 
-use conquer\oauth2\models\Client;
+use virginent\oauth2\models\Client;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
@@ -102,10 +102,10 @@ abstract class BaseModel extends Model
     {
         if (is_null($this->_client)) {
             if (empty($this->client_id)) {
-                $this->errorServer(Yii::t('conquer/oauth2', 'Unknown client.'), Exception::INVALID_CLIENT);
+                $this->errorServer(Yii::t('virginent/oauth2', 'Unknown client.'), Exception::INVALID_CLIENT);
             }
             if (!$this->_client = Client::findOne(['client_id' => $this->client_id])) {
-                $this->errorServer(Yii::t('conquer/oauth2', 'Unknown client.'), Exception::INVALID_CLIENT);
+                $this->errorServer(Yii::t('virginent/oauth2', 'Unknown client.'), Exception::INVALID_CLIENT);
             }
         }
         return $this->_client;
@@ -119,7 +119,7 @@ abstract class BaseModel extends Model
     public function validateClientSecret($attribute)
     {
         if (!Yii::$app->security->compareString($this->getClient()->client_secret, $this->$attribute)) {
-            $this->addError($attribute, Yii::t('conquer/oauth2', 'The client credentials are invalid.'), Exception::UNAUTHORIZED_CLIENT);
+            $this->addError($attribute, Yii::t('virginent/oauth2', 'The client credentials are invalid.'), Exception::UNAUTHORIZED_CLIENT);
         }
     }
 
@@ -128,7 +128,7 @@ abstract class BaseModel extends Model
         if (!empty($this->$attribute)) {
             $clientRedirectUri = $this->getClient()->redirect_uri;
             if (strncasecmp($this->$attribute, $clientRedirectUri, strlen($clientRedirectUri)) !== 0) {
-                $this->errorServer(Yii::t('conquer/oauth2', 'The redirect URI provided is missing or does not match.'), Exception::REDIRECT_URI_MISMATCH);
+                $this->errorServer(Yii::t('virginent/oauth2', 'The redirect URI provided is missing or does not match.'), Exception::REDIRECT_URI_MISMATCH);
             }
         }
     }
@@ -136,7 +136,7 @@ abstract class BaseModel extends Model
     public function validateScope($attribute)
     {
         if (!$this->checkSets($this->$attribute, $this->client->scope)) {
-            $this->errorRedirect(Yii::t('conquer/oauth2', 'The requested scope is invalid, unknown, or malformed.'), Exception::INVALID_SCOPE);
+            $this->errorRedirect(Yii::t('virginent/oauth2', 'The requested scope is invalid, unknown, or malformed.'), Exception::INVALID_SCOPE);
         }
     }
 

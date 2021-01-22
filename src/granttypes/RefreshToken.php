@@ -1,25 +1,25 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\granttypes;
+namespace virginent\oauth2\granttypes;
 
-use conquer\oauth2\BaseModel;
-use conquer\oauth2\models\AccessToken;
+use virginent\oauth2\BaseModel;
+use virginent\oauth2\models\AccessToken;
 use Yii;
 
 /**
  * Class RefreshToken
- * @package conquer\oauth2\granttypes
- * @author Andrey Borodulin
+ * @package virginent\oauth2\granttypes
+ * @Author Daniel Lucas
  */
 class RefreshToken extends BaseModel
 {
     /**
-     * @var \conquer\oauth2\models\RefreshToken
+     * @var \virginent\oauth2\models\RefreshToken
      */
     private $_refreshToken;
 
@@ -65,7 +65,7 @@ class RefreshToken extends BaseModel
      * @return array
      * @throws \Exception
      * @throws \Throwable
-     * @throws \conquer\oauth2\Exception
+     * @throws \virginent\oauth2\Exception
      * @throws \yii\base\Exception
      * @throws \yii\db\StaleObjectException
      */
@@ -82,7 +82,7 @@ class RefreshToken extends BaseModel
 
         $refreshToken->delete();
 
-        $refreshToken = \conquer\oauth2\models\RefreshToken::createRefreshToken([
+        $refreshToken = \virginent\oauth2\models\RefreshToken::createRefreshToken([
             'client_id' => $this->client_id,
             'user_id' => $refreshToken->user_id,
             'expires' => $this->refreshTokenLifetime + time(),
@@ -99,7 +99,7 @@ class RefreshToken extends BaseModel
     }
 
     /**
-     * @throws \conquer\oauth2\Exception
+     * @throws \virginent\oauth2\Exception
      */
     public function validateRefreshToken()
     {
@@ -107,17 +107,17 @@ class RefreshToken extends BaseModel
     }
 
     /**
-     * @return \conquer\oauth2\models\RefreshToken
-     * @throws \conquer\oauth2\Exception
+     * @return \virginent\oauth2\models\RefreshToken
+     * @throws \virginent\oauth2\Exception
      */
     public function getRefreshToken()
     {
         if (is_null($this->_refreshToken)) {
             if (empty($this->refresh_token)) {
-                $this->errorServer(Yii::t('conquer/oauth2', 'The request is missing "refresh_token" parameter.'));
+                $this->errorServer(Yii::t('virginent/oauth2', 'The request is missing "refresh_token" parameter.'));
             }
-            if (!$this->_refreshToken = \conquer\oauth2\models\RefreshToken::findOne(['refresh_token' => $this->refresh_token])) {
-                $this->errorServer(Yii::t('conquer/oauth2', 'The Refresh Token is invalid.'));
+            if (!$this->_refreshToken = \virginent\oauth2\models\RefreshToken::findOne(['refresh_token' => $this->refresh_token])) {
+                $this->errorServer(Yii::t('virginent/oauth2', 'The Refresh Token is invalid.'));
             }
         }
         return $this->_refreshToken;

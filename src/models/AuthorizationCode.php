@@ -1,13 +1,13 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\models;
+namespace virginent\oauth2\models;
 
-use conquer\oauth2\Exception;
+use virginent\oauth2\Exception;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\VarDumper;
@@ -84,7 +84,7 @@ class AuthorizationCode extends ActiveRecord
         } else {
             Yii::error(__CLASS__ . ' validation error: ' . VarDumper::dumpAsString($authCode->errors));
         }
-        throw new Exception(Yii::t('conquer/oauth2', 'Unable to create authorization code.'), Exception::SERVER_ERROR);
+        throw new Exception(Yii::t('virginent/oauth2', 'Unable to create authorization code.'), Exception::SERVER_ERROR);
     }
 
     /**

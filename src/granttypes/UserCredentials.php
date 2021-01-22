@@ -1,16 +1,16 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\granttypes;
+namespace virginent\oauth2\granttypes;
 
-use conquer\oauth2\BaseModel;
-use conquer\oauth2\models\AccessToken;
-use conquer\oauth2\models\RefreshToken;
-use conquer\oauth2\OAuth2IdentityInterface;
+use virginent\oauth2\BaseModel;
+use virginent\oauth2\models\AccessToken;
+use virginent\oauth2\models\RefreshToken;
+use virginent\oauth2\OAuth2IdentityInterface;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -91,7 +91,7 @@ class UserCredentials extends BaseModel
      * Validates the password.
      * This method serves as the inline validation for password.
      * @param string $attribute the attribute currently being validated
-     * @throws \conquer\oauth2\Exception
+     * @throws \virginent\oauth2\Exception
      * @throws \yii\base\InvalidConfigException
      */
     public function validatePassword($attribute)
@@ -100,7 +100,7 @@ class UserCredentials extends BaseModel
             /** @var OAuth2IdentityInterface $user */
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, Yii::t('conquer/oauth2', 'Invalid username or password.'));
+                $this->addError($attribute, Yii::t('virginent/oauth2', 'Invalid username or password.'));
             }
         }
     }
@@ -140,7 +140,7 @@ class UserCredentials extends BaseModel
      * Finds user by [[username]]
      * @return IdentityInterface|null
      * @throws \yii\base\InvalidConfigException
-     * @throws \conquer\oauth2\Exception
+     * @throws \virginent\oauth2\Exception
      */
     protected function getUser()
     {
@@ -149,7 +149,7 @@ class UserCredentials extends BaseModel
 
         $identityObject = Yii::createObject($identityClass);
         if (! $identityObject instanceof OAuth2IdentityInterface) {
-            $this->errorServer(Yii::t('conquer/oauth2', 'OAuth2IdentityInterface is not implemented.'));
+            $this->errorServer(Yii::t('virginent/oauth2', 'OAuth2IdentityInterface is not implemented.'));
         }
 
         if ($this->_user === null) {

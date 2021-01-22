@@ -1,22 +1,22 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2\granttypes;
+namespace virginent\oauth2\granttypes;
 
-use conquer\oauth2\BaseModel;
-use conquer\oauth2\Exception;
-use conquer\oauth2\models\AccessToken;
-use conquer\oauth2\models\AuthorizationCode;
-use conquer\oauth2\models\RefreshToken;
+use virginent\oauth2\BaseModel;
+use virginent\oauth2\Exception;
+use virginent\oauth2\models\AccessToken;
+use virginent\oauth2\models\AuthorizationCode;
+use virginent\oauth2\models\RefreshToken;
 use Yii;
 
 /**
  * @link https://tools.ietf.org/html/rfc6749#section-4.1.3
- * @author Andrey Borodulin
+ * @Author Daniel Lucas
  */
 class Authorization extends BaseModel
 {
@@ -75,14 +75,14 @@ class Authorization extends BaseModel
     /**
      * @param $attribute
      * @throws Exception
-     * @throws \conquer\oauth2\RedirectException
+     * @throws \virginent\oauth2\RedirectException
      */
     public function validateRedirectUri($attribute)
     {
         $authCode = $this->getAuthCode();
 
         if ($authCode->redirect_uri && (strcasecmp($this->$attribute, $authCode->redirect_uri) !== 0)) {
-            $this->errorServer(Yii::t('conquer/oauth2', 'The redirect URI provided does not match.'), Exception::REDIRECT_URI_MISMATCH);
+            $this->errorServer(Yii::t('virginent/oauth2', 'The redirect URI provided does not match.'), Exception::REDIRECT_URI_MISMATCH);
         }
         parent::validateRedirectUri($attribute);
     }
@@ -92,7 +92,7 @@ class Authorization extends BaseModel
      * @throws Exception
      * @throws \Exception
      * @throws \Throwable
-     * @throws \conquer\oauth2\RedirectException
+     * @throws \virginent\oauth2\RedirectException
      * @throws \yii\base\Exception
      * @throws \yii\db\StaleObjectException
      */
@@ -130,7 +130,7 @@ class Authorization extends BaseModel
 
     /**
      * @throws Exception
-     * @throws \conquer\oauth2\RedirectException
+     * @throws \virginent\oauth2\RedirectException
      */
     public function validateCode()
     {
@@ -140,16 +140,16 @@ class Authorization extends BaseModel
     /**
      * @return AuthorizationCode
      * @throws Exception
-     * @throws \conquer\oauth2\RedirectException
+     * @throws \virginent\oauth2\RedirectException
      */
     public function getAuthCode()
     {
         if (is_null($this->_authCode)) {
             if (empty($this->code)) {
-                $this->errorRedirect(Yii::t('conquer/oauth2', 'Authorization code is missing.'), Exception::INVALID_REQUEST);
+                $this->errorRedirect(Yii::t('virginent/oauth2', 'Authorization code is missing.'), Exception::INVALID_REQUEST);
             }
             if (!$this->_authCode = AuthorizationCode::findOne(['authorization_code' => $this->code])) {
-                $this->errorRedirect(Yii::t('conquer/oauth2', 'The authorization code is not found or has been expired.'), Exception::INVALID_CLIENT);
+                $this->errorRedirect(Yii::t('virginent/oauth2', 'The authorization code is not found or has been expired.'), Exception::INVALID_CLIENT);
             }
         }
         return $this->_authCode;

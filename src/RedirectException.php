@@ -1,18 +1,18 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2;
+namespace virginent\oauth2;
 
 use Yii;
 
 /**
  *
  * @see http://tools.ietf.org/html/draft-ietf-oauth-v2-20#section-4.1
- * @author Andrey Borodulin
+ * @author Daniel Lucas
  */
 class RedirectException extends Exception
 {

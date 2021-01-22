@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "conquer\\oauth2\\": "src"
+            "virginent\\oauth2\\": "src"
         }
     },
     "config": {

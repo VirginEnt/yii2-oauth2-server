@@ -1,14 +1,14 @@
 <?php
 /**
- * @link https://github.com/borodulin/yii2-oauth2-server
- * @copyright Copyright (c) 2015 Andrey Borodulin
- * @license https://github.com/borodulin/yii2-oauth2-server/blob/master/LICENSE
+ * @link https://github.com/virginent/yii2-oauth2-server
+ * @copyright Copyright (c) 2021 Daniel Lucas
+ * @license https://github.com/virginent/yii2-oauth2-server/blob/master/LICENSE
  */
 
-namespace conquer\oauth2;
+namespace virginent\oauth2;
 
-use conquer\oauth2\models\AccessToken;
-use conquer\oauth2\request\AccessTokenExtractor;
+use virginent\oauth2\models\AccessToken;
+use virginent\oauth2\request\AccessTokenExtractor;
 use Yii;
 use yii\base\Controller;
 use yii\filters\auth\AuthMethod;
@@ -26,13 +26,13 @@ use yii\web\UnauthorizedHttpException;
  * {
  *     return [
  *         'tokenAuth' => [
- *             'class' => \conquer\oauth2\TokenAuth::className(),
+ *             'class' => \virginent\oauth2\TokenAuth::className(),
  *         ],
  *     ];
  * }
  * ```
  *
- * @author Andrey Borodulin
+ * @author Daniel Lucas
  */
 class TokenAuth extends AuthMethod
 {
@@ -69,7 +69,7 @@ class TokenAuth extends AuthMethod
         $accessToken = $this->getAccessToken();
 
         if (!$this->checkScopes($this->scopes, $accessToken->scope)) {
-            throw new UnauthorizedHttpException(Yii::t('conquer/oauth2', 'The access token does not have required scopes.'));
+            throw new UnauthorizedHttpException(Yii::t('virginent/oauth2', 'The access token does not have required scopes.'));
         }
 
         /** @var IdentityInterface $identityClass */
@@ -78,7 +78,7 @@ class TokenAuth extends AuthMethod
         $identity = $identityClass::findIdentity($accessToken->user_id);
 
         if (empty($identity)) {
-            throw new Exception(Yii::t('conquer/oauth2', 'User is not found.'), Exception::ACCESS_DENIED);
+            throw new Exception(Yii::t('virginent/oauth2', 'User is not found.'), Exception::ACCESS_DENIED);
         }
 
         $user->setIdentity($identity);
@@ -120,7 +120,7 @@ class TokenAuth extends AuthMethod
      */
     public function handleFailure($response)
     {
-        throw new Exception(Yii::t('conquer/oauth2', 'You are requesting with an invalid credential.'));
+        throw new Exception(Yii::t('virginent/oauth2', 'You are requesting with an invalid credential.'));
     }
 
     /**
@@ -134,10 +134,10 @@ class TokenAuth extends AuthMethod
             $tokenExtractor = Yii::createObject(AccessTokenExtractor::class);
 
             if (!$accessToken = AccessToken::findOne(['access_token' => $tokenExtractor->extract()])) {
-                throw new UnauthorizedHttpException(Yii::t('conquer/oauth2', 'The access token provided is invalid.'));
+                throw new UnauthorizedHttpException(Yii::t('virginent/oauth2', 'The access token provided is invalid.'));
             }
             if ($accessToken->expires < time()) {
-                throw new UnauthorizedHttpException(Yii::t('conquer/oauth2', 'The access token provided has expired.'));
+                throw new UnauthorizedHttpException(Yii::t('virginent/oauth2', 'The access token provided has expired.'));
             }
             $this->_accessToken = $accessToken;
         }

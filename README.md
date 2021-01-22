@@ -1,8 +1,6 @@
 Yii2 OAuth 2.0 Server
 =================
 
-[![Build Status](https://travis-ci.org/borodulin/yii2-oauth2-server.svg?branch=master)](https://travis-ci.org/borodulin/yii2-oauth2-server)
-
 ## Description
 
 This extension provides simple implementation of [Oauth 2.0](http://tools.ietf.org/wg/oauth/draft-ietf-oauth-v2/) specification using Yii2 framework.
@@ -14,12 +12,12 @@ The preferred way to install this extension is through [composer](http://getcomp
 To install, either run
 
 ```
-$ php composer.phar require conquer/oauth2 "*"
+$ php composer.phar require virginent/oauth2 "*"
 ```
 or add
 
 ```
-"conquer/oauth2": "*"
+"virginent/oauth2": "*"
 ```
 
 to the ```require``` section of your `composer.json` file.
@@ -37,7 +35,7 @@ To add migrations to your application, edit the console config file to configure
         'migrationPath' => null,
         'migrationNamespaces' => [
             // ...
-            'conquer\oauth2\migrations',
+            'virginent\oauth2\migrations',
         ],
     ],
 ],
@@ -55,9 +53,9 @@ You also need to specify message translation source for this package:
 'components' => [
     'i18n' => [
         'translations' => [
-            'conquer/oauth2' => [
+            'virginent/oauth2' => [
                 'class' => \yii\i18n\PhpMessageSource::class,
-                'basePath' => '@conquer/oauth2/messages',
+                'basePath' => '@virginent/oauth2/messages',
             ],
         ],
     ]
@@ -83,7 +81,7 @@ class AuthController extends \yii\web\Controller
              * you can do additional steps, such as third party oauth authorization (Facebook, Google ...)  
              */
             'oauth2Auth' => [
-                'class' => \conquer\oauth2\AuthorizeFilter::className(),
+                'class' => \virginent\oauth2\AuthorizeFilter::className(),
                 'only' => ['index'],
             ],
         ];
@@ -95,7 +93,7 @@ class AuthController extends \yii\web\Controller
              * Returns an access token.
              */
             'token' => [
-                'class' => \conquer\oauth2\TokenAction::classname(),
+                'class' => \virginent\oauth2\TokenAction::classname(),
             ],
             /**
              * OPTIONAL
@@ -163,7 +161,7 @@ class ApiController extends \yii\rest\Controller
              * Performs authorization by token
              */
             'tokenAuth' => [
-                'class' => \conquer\oauth2\TokenAuth::className(),
+                'class' => \virginent\oauth2\TokenAuth::className(),
             ],
         ];
     }
@@ -202,10 +200,10 @@ return [
 ```
 
 If you want to use Resource Owner Password Credentials Grant, 
-implement `\conquer\oauth2\OAuth2IdentityInterface`.
+implement `\virginent\oauth2\OAuth2IdentityInterface`.
 
 ```php
-use conquer\oauth2\OAuth2IdentityInterface;
+use virginent\oauth2\OAuth2IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface, OAuth2IdentityInterface
 {
@@ -253,4 +251,4 @@ For further information see [Yii2 Ratelimiter](http://www.yiiframework.com/doc-2
 
 ## License
 
-**conquer/oauth2** is released under the MIT License. See the bundled `LICENSE` for details.
+**virginent/oauth2** is released under the MIT License. See the bundled `LICENSE` for details.
