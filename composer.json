@@ -1,18 +1,18 @@
 {
-    "name": "conquer/oauth2",
+    "name": "virginent/oauth2",
     "description": "The Oauth2 Server extension for the Yii2 framework",
     "keywords": ["yii2", "oauth2", "oauth2-server"],
-    "homepage": "https://github.com/borodulin/yii2-oauth2-server",
+    "homepage": "https://github.com/virginent/yii2-oauth2-server",
     "type": "yii2-extension",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/borodulin/yii2-oauth2-server/issues",
-        "source": "https://github.com/borodulin/yii2-oauth2-server"
+        "issues": "https://github.com/virginent/yii2-oauth2-server/issues",
+        "source": "https://github.com/virginent/yii2-oauth2-server"
     },
     "authors": [
         {
-            "name": "Andrey Borodulin",
-            "email": "borodulin@gmail.com"
+            "name": "Daniel Lucas",
+            "email": "daniel.lucas@dlmails.de"
         }
     ],
     "minimum-stability": "dev",
